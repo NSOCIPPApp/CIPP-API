@@ -1,0 +1,23 @@
+# Test-deploy van CIPP-API naar de Flex Consumption app (Linux, PS 7.6)
+# Handmatig te starten via Actions -> "Run workflow". Draait NIET automatisch bij push.
+name: Deploy CIPP-API to Flex test - cipp-lz6p7-flex
+
+on:
+  workflow_dispatch:
+
+env:
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
+
+jobs:
+  deploy-flex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@v4
+
+      - name: 'Deploy to Flex Consumption'
+        uses: Azure/functions-action@v1
+        with:
+          app-name: 'cipp-lz6p7-flex'
+          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FLEX }}
