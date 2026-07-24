@@ -1,4 +1,5 @@
 {
+  "scriptFile": "run.ps1",
   "bindings": [
     { "type": "warmupTrigger", "direction": "in", "name": "WarmupContext" }
   ]
